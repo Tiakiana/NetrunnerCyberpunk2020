@@ -6,13 +6,19 @@
         public List<Gate> Gates = new List<Gate>();
         public List<Entity> Entities = new List<Entity>();
 
+        public delegate string EntityEnterArea(Entity entity, Area area);
+        public event EntityEnterArea OnEntityEnter;
+
+
+        
         public Area(string name)
         {
             Name = name;
+            OnEntityEnter += GameManager.inst.EntityEnterHandler;
         }
         public string Scan(Player player)
         {
-
+            
             string entityinfo = "";
 
             foreach (Entity e in Entities)
@@ -52,9 +58,9 @@
 
             return $"{Name}.\nFrom here there is \n\n {options} \n";
         }
-        public void Transition()
+        public void Transition(Entity entity)
         {
-
+            OnEntityEnter.Invoke(entity,this);
         }
     }
 }

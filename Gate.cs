@@ -28,12 +28,14 @@
                     entity.Area = Inside;
                     OutSide.Entities.Remove(entity);
                     Inside.Entities.Add(entity);
+                    Inside.Transition(entity);
                 }
                 else if (entity.Area == Inside)
                 {
                     entity.Area = OutSide;
-                    OutSide.Entities.Add(entity);
                     Inside.Entities.Remove(entity);
+                    OutSide.Entities.Add(entity);
+                    OutSide.Transition(entity);
 
                 }
             }

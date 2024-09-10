@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
+using System.Xml.Schema;
 
 namespace NetrunnerConsole
 {
@@ -9,13 +10,13 @@ namespace NetrunnerConsole
         public Player Player = new Player("Regina");
         public NetSystem System = new NetSystem();
         
-
+        public GameManager GameManager = new GameManager();
 
 
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Hello, Regina!");
+            Console.WriteLine("All Hail the Majestic Regina! How can thy serfs help thee?");
 
             Program p = new Program();
 
@@ -23,7 +24,7 @@ namespace NetrunnerConsole
             p.Player.Team = 3;
             for (int i = 0; i<10; i++)
             {
-            Console.WriteLine("hej ");
+            Console.WriteLine("Your Command, thy Majesty?");
 
                 string res = Console.ReadLine();
                 res = res.ToUpper();
@@ -45,34 +46,45 @@ namespace NetrunnerConsole
 
 
                         break;
-
-                    case "RUN":
+                    case "HELP":
                         Console.WriteLine("");
+                        Console.WriteLine("Available Commands: ");
+                        Console.WriteLine("Scan");
+                        Console.WriteLine("Run");
+                        Console.WriteLine("Move");
+                        Console.WriteLine("Look: scans your immediate surroundings");
+                        Console.WriteLine("Read read a file in same area or in your deck.");
+                        Console.WriteLine("Erase");
+                        Console.WriteLine("");
+                        Console.WriteLine("");
+                        break;
+                    case "RUN":
+                        Console.WriteLine("Not yet implemented");
 
                         break;
 
                     case "ERASE":
-                        Console.WriteLine("What would you like to read?");
+                        Console.WriteLine("Not yet implemented");
+
+                        break;
+
+                    case "LOOK":
+                        Console.WriteLine(  "You look around.\nYou are at: ");
+                        Console.WriteLine(p.Player.Area.Scan(p.Player));
 
                         break;
 
                     case "":
                         Console.WriteLine("What would you like to read?");
-
                         break;
-
-                   
-
                 }
-
-
             }
-
         }
 
         private void Read()
         {
             Console.WriteLine("What would you like to read?");
+            Console.WriteLine("Not done");
 
             //Get list of available files to read from Either occupied system / own Deck
 
