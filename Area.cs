@@ -31,7 +31,7 @@
                     int scandefence = ex.ScanDefence();
                     if (scanattempt >= scandefence)
                     {
-                        entityinfo = "Scanned: " + ex.Name + "\n";
+                        entityinfo += "Scanned: " + ex.Name + "\n";
 
                     }
                 }

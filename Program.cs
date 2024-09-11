@@ -19,12 +19,16 @@ namespace NetrunnerConsole
             Console.WriteLine("All Hail the Majestic Regina! How can thy serfs help thee?");
 
             Program p = new Program();
+            p.Player.CurrentDeckEquipped = new Deck();
+            p.Player.CurrentDeckEquipped.ProgramList.Add(NetProgram.CreateInvisibility(p.Player.CurrentDeckEquipped));
+            p.Player.CurrentDeckEquipped.ProgramList.Add(NetProgram.CreateStealth(p.Player.CurrentDeckEquipped));
 
             p.Player.Area = p.System.Areas[0];
             p.Player.Team = 3;
             for (int i = 0; i<10; i++)
             {
-            Console.WriteLine("Your Command, thy Majesty?");
+                Console.WriteLine(  );
+                Console.WriteLine("Your Command, thy Majesty?");
 
                 string res = Console.ReadLine();
                 res = res.ToUpper();
@@ -59,7 +63,7 @@ namespace NetrunnerConsole
                         Console.WriteLine("");
                         break;
                     case "RUN":
-                        Console.WriteLine("Not yet implemented");
+                        p.Run();
 
                         break;
 
@@ -94,7 +98,14 @@ namespace NetrunnerConsole
         {
             Console.WriteLine("What would you like to Run?");
             //enumerate all available programs!
-            int choice = int.Parse(Console.ReadLine());
+            NetProgram programToRun = ChooseProgram();
+            if (programToRun == null)
+            {
+                Console.WriteLine("Dammit, thou art fucked, Your Highness!");
+                return;
+            }
+            programToRun.Activate(Player);
+
 
         }
 
@@ -120,9 +131,28 @@ namespace NetrunnerConsole
             int res2 = int.Parse(Console.ReadLine());
             res2--;
            return Player.Area.Gates[res2];
-            
-
         }
+
+        private NetProgram ChooseProgram()
+        {
+
+            for (int i = 1; i < Player.CurrentDeckEquipped.ProgramList.Count + 1; i++)
+            {
+                Console.WriteLine(i + ": " + Player.CurrentDeckEquipped.ProgramList[i - 1].ToString());
+            }
+
+            if (Player.CurrentDeckEquipped.ProgramList.Count == 0)
+            {
+                Console.WriteLine("No programs in deck!");
+                return null;
+            }
+
+            int res = int.Parse(Console.ReadLine());
+            res--;
+            return Player.CurrentDeckEquipped.ProgramList[res];
+        }
+
+
         private Area ChooseArea()
         {
             for (int ix = 1; ix < Player.Area.Gates.Count + 1; ix++)
