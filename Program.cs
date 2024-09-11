@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using NetrunnerConsole.ProgramTypology;
+using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Schema;
@@ -20,8 +21,11 @@ namespace NetrunnerConsole
 
             Program p = new Program();
             p.Player.CurrentDeckEquipped = new Deck();
+            p.Player.CurrentDeckEquipped.ProgramList.Add(NetProgram.CreateWizardsBook(p.Player.CurrentDeckEquipped));
             p.Player.CurrentDeckEquipped.ProgramList.Add(NetProgram.CreateInvisibility(p.Player.CurrentDeckEquipped));
             p.Player.CurrentDeckEquipped.ProgramList.Add(NetProgram.CreateStealth(p.Player.CurrentDeckEquipped));
+            p.Player.CurrentDeckEquipped.ProgramList.Add(NetProgram.CreateForceProtection(p.Player.CurrentDeckEquipped));
+            p.Player.CurrentDeckEquipped.ProgramList.Add(NetProgram.CreateKiller4(p.Player.CurrentDeckEquipped));
 
             p.Player.Area = p.System.Areas[0];
             p.Player.Team = 3;
@@ -31,6 +35,8 @@ namespace NetrunnerConsole
                 Console.WriteLine("Your Command, thy Majesty?");
 
                 string res = Console.ReadLine();
+                Console.WriteLine();
+                Console.WriteLine();
                 res = res.ToUpper();
                 switch (res)
                 {
@@ -46,13 +52,14 @@ namespace NetrunnerConsole
                     case "MOVE":
 
                         Console.WriteLine(  "Choose where to go to");
-                        p.ChooseGate().Transition(p.Player);
+                        ChooseGate().Transition(p.Player);
 
 
                         break;
                     case "HELP":
                         Console.WriteLine("");
-                        Console.WriteLine("Available Commands: ");
+                        Console.WriteLine("\t Available Commands: ");
+                        Console.WriteLine(  );
                         Console.WriteLine("Scan");
                         Console.WriteLine("Run");
                         Console.WriteLine("Move");
@@ -88,9 +95,11 @@ namespace NetrunnerConsole
         private void Read()
         {
             Console.WriteLine("What would you like to read?");
-            Console.WriteLine("Not done");
 
-            //Get list of available files to read from Either occupied system / own Deck
+            NetFile file = ChoseFile(Player.inst.Area);
+
+            Console.WriteLine(  file.Read());
+      //Todo let them Eat their own deck.
 
         }
 
@@ -104,35 +113,52 @@ namespace NetrunnerConsole
                 Console.WriteLine("Dammit, thou art fucked, Your Highness!");
                 return;
             }
-            programToRun.Activate(Player);
+            programToRun.Activate();
 
 
         }
 
         private void Scan()
         {
-            //Todo: Sørg for at du kan scanne eget Area
             Console.WriteLine("What would you like to scan?");
-            //enumerate all available programs!
-
-            
 
             int choice = int.Parse(Console.ReadLine());
 
         }
-        private Gate ChooseGate()
+        public static Gate ChooseGate()
         {
             
-            for (int ix = 1; ix < Player.Area.Gates.Count + 1; ix++)
+            for (int ix = 1; ix < Player.inst.Area.Gates.Count + 1; ix++)
             {
-                Console.WriteLine(ix + ": " + Player.Area.Gates[ix - 1].GateName);
+                Console.WriteLine(ix + ": " + Player.inst.Area.Gates[ix - 1].GateName);
             }
 
             int res2 = int.Parse(Console.ReadLine());
             res2--;
-           return Player.Area.Gates[res2];
+           return Player.inst.Area.Gates[res2];
         }
+        public static NetProgram ChooseEnemyProgram()
+        {
 
+            for (int i = 1; i < Player.inst.Area.Entities.Count + 1; i++)
+            {
+                if (Player.inst.Area.Entities[i - 1] is Player)
+                {
+                    continue;
+                }
+                Console.WriteLine(i + ": " + Player.inst.Area.Entities[i - 1].ToString());
+            }
+
+            if (Player.inst.Area.Entities.Count == 0)
+            {
+                Console.WriteLine("No targets!");
+                return null;
+            }
+
+            int res = int.Parse(Console.ReadLine());
+            res--;
+            return Player.inst.Area.Entities[res] as NetProgram;
+        }
         private NetProgram ChooseProgram()
         {
 
@@ -151,7 +177,24 @@ namespace NetrunnerConsole
             res--;
             return Player.CurrentDeckEquipped.ProgramList[res];
         }
+        public static NetFile ChoseFile(Area area)
+        {
 
+            for (int i = 1; i < area.Entities.Where(x=> x is NetFile).Count() + 1; i++)
+            {
+                Console.WriteLine(i + ": " + area.Entities.Where(x=> x is NetFile).ToList()[i - 1].ToString());
+            }
+
+            if (area.Entities.Where(x => x is NetFile).Count() == 0)
+            {
+                Console.WriteLine("No Files in area!");
+                return null;
+            }
+
+            int res = int.Parse(Console.ReadLine());
+            res--;
+            return area.Entities.Where(x => x is NetFile).ToList()[res] as NetFile;
+        }
 
         private Area ChooseArea()
         {

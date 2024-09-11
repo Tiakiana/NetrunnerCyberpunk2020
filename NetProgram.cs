@@ -1,4 +1,6 @@
-﻿namespace NetrunnerConsole
+﻿using NetrunnerConsole.ProgramTypology;
+
+namespace NetrunnerConsole
 {
     public partial class NetProgram : Entity
     {
@@ -6,64 +8,32 @@
         public string Description;
         public int MU;
         public int ProgramStrength;
-        public bool Derezzed;
+        public bool Derezzed { get { return Damage >= ProgramStrength; } }
         public Deck? Deck;
         public ProgramType ProgramType;
+        public bool Encrypted;
+        public int Damage;
 
-        public int CoolDown = 0;
+        public int CoolDown { get; set; }
 
         //Todo: Byg en måde at checke døre på
-        public Func<int> ScanDefence => () => { return RNG.RollD10() + ProgramStrength + MySystem.DataWallStrength + (MySystem.Alerted ? 10 : 0); };
+        public Func<int> ScanDefence => () => { return RNG.D10() + ProgramStrength + MySystem.DataWallStrength + (MySystem.Alerted ? 10 : 0); };
 
-        public NetProgram(string name, int mU, int programStrength, Area area, NetSystem mySystem)
+     
+
+        public NetProgram(string name, int mU, int programStrength, Area area, NetSystem mySystem, Deck deck)
         {
             Name = name;
             MU = mU;
             ProgramStrength = programStrength;
             Area = area;
-            Area.Entities.Add(this);
-            MySystem = mySystem;
-
-            switch (name)
+            if (area!=null)
             {
-                case "Watch_Dog":
-                    Activate = WatchDogLogic;
-                    break;
-                case "Invisibility":
-                    Activate = InvisibilityLogic;
-                    break;
-            }
-        }
-        public NetProgram(string name, int mU, int programStrength, Deck deck)
-        {
-            Name = name;
-            MU = mU;
-            ProgramStrength = programStrength;
-            
-            
 
-            switch (name)
-            {
-                case "Watch_Dog":
-                    Activate = WatchDogLogic;
-                    break;
-                case "Invisibility":
-                case "Stealth":
-                    Activate = InvisibilityLogic;
-                    break;
-            }
-        }
-
-
-        public NetProgram(string name, int mU, int programStrength, Area area, NetSystem mySystem, ActivationDelegate activation)
-        {
-            Name = name;
-            MU = mU;
-            ProgramStrength = programStrength;
-            Area = area;
             Area.Entities.Add(this);
+            }
             MySystem = mySystem;
-            Activate = activation;
+            Deck = deck;
         }
 
         public void DeRezz()
@@ -77,31 +47,123 @@
             return Name;
         }
 
-        public ActivationDelegate Activate;
 
-        public bool DetectPlayer(Player player, NetProgram entity)
+
+        public virtual void Activate() {
+        
+        
+        }
+        public virtual void Activate(object obj)
         {
-            List<NetProgram> evasions = player.ActivePrograms.Where(x=> x.ProgramType == ProgramType.Evasion).ToList();
-            if (evasions == null || evasions.Count == 0)
+
+
+        }
+
+        public bool DecryptGate(NetProgram attacker, Gate gate)
+        {
+            int attackerroll = RNG.D10();
+            Console.WriteLine(attacker.Name + " tries to force open the gate [" + attackerroll+ " + "+ attacker.ProgramStrength);
+
+
+            int defenderroll = RNG.D10();
+            Console.WriteLine("The gate tries to resist! [" + defenderroll+ " + "+ gate.GateStrength);
+
+            if (attackerroll+attacker.ProgramStrength>= defenderroll+gate.GateStrength)
             {
+                Console.WriteLine("The gate is opened! ");
+                gate.Broken = true;
                 return true;
             }
 
-            int playerroll = RNG.RollD10() + evasions.Max(x=> x.ProgramStrength);
-            Console.WriteLine($"[{player.Name}s evasion check was:  {playerroll}]"  );
-            int computerRoll = RNG.RollD10() + entity.ProgramStrength;
-            Console.WriteLine($"[{entity.Name}s evasion check was: " + computerRoll  );
-            if (playerroll >= computerRoll)
+
+            Console.WriteLine("The gate is unaffected.");
+            return false;
+
+            
+
+        }
+
+        public bool DecryptProgram(NetProgram attacker, NetProgram file)
+        {
+            int attackerroll = RNG.D10();
+            Console.WriteLine(attacker.Name + " tries to force open the file [" + attackerroll + " + " + attacker.ProgramStrength);
+
+
+            int defenderroll = RNG.D10();
+            Console.WriteLine("The file tries to resist [" + defenderroll + " + " + file.ProgramStrength);
+
+            if (attackerroll + attacker.ProgramStrength >= defenderroll + file.ProgramStrength)
             {
-                entity.CoolDown = 1 + playerroll - computerRoll;
+                Console.WriteLine("The file's resolve falters, it's secrets plain for you to read! ");
+                file.Encrypted = false;
+                return true;
+            }
+
+
+            Console.WriteLine("The file's secrets remain a mystery.");
+            return false;
+
+
+        }
+
+
+        public bool DetectPlayer(Player player, NetProgram entity)
+        {
+            List<NetProgram> evasions = player.ActivePrograms.Where(x => x.ProgramType == ProgramType.Evasion).ToList();
+
+
+            int playerroll = RNG.D10();
+            int strength = evasions.Count > 0 ? evasions.Max(x => x.ProgramStrength) : 0;
+
+            Console.WriteLine($"[{player.Name}s evasion check was:  {playerroll} + {strength}]");
+
+
+            int computerRoll = RNG.D10() + entity.ProgramStrength;
+
+            Console.WriteLine($"[{entity.Name}s evasion check was: " + computerRoll);
+
+            if ((playerroll + strength) >= computerRoll)
+            {
+                entity.CoolDown = 1 + playerroll + strength - computerRoll;
                 return false;
             }
             return true;
         }
 
+        public static NetProgram CreateWizardsBook(Deck deck)
+        {
+            return new Decryptor("Wizard's Book", 2, 4,null,null ,deck);
+        }  
+        public static NetProgram CreateForceProtection(Deck deck)
+        {
+            return new Protection("ForceProtection", 2, 4,null,null ,deck);
+        }
+        public static NetProgram CreateStun(Deck deck)
+        {
+            return new Stun("Stun", 3, 3, null, null, deck);
+        }
+
+        public static NetProgram CreateHellBolt(Deck deck)
+        {
+            return new HellBolt("Hellbolt", 4, 4, null, null, deck);
+        }
+
+        public static NetProgram CreateKiller4(Deck deck)
+        {
+            return new Killer("Killer_IV", 5, 4, null, null, deck);
+        }
+
+        public static NetProgram CreateKiller2(Deck deck)
+        {
+            return new Killer("Killer_II", 5, 2, null, null, deck);
+        }
+        public static NetProgram CreateKiller6(Deck deck)
+        {
+            return new Killer("Killer_VI", 5, 6, null, null, deck);
+        }
         public delegate string ActivationDelegate(params object[] objects);
 
-      
+
 
     }
     public enum ProgramType
@@ -110,40 +172,40 @@
     }
 
 
-    public partial class NetProgram :Entity
+    public partial class NetProgram : Entity
     {
-        public static NetProgram CreateFile(string title, Area ares, NetSystem sys)
+        public static NetProgram CreateFile(string title, Area ares, NetSystem sys, string content ="Some important info")
         {
-            return new NetProgram(title, 2, 0, ares, sys);
+            return new NetFile(title, 2, 3, ares, sys,null,content);
         }
 
-        public static NetProgram CreatePoisonFlatline(Area area, NetSystem sys)
-        {
-            return new NetProgram("Poison Flatline", 2, 2, area, sys);
-        }
+        //public static NetProgram CreatePoisonFlatline(Area area, NetSystem sys)
+        //{
+        //    return new NetProgram("Poison Flatline", 2, 2, area, sys);
+        //}
 
         public static NetProgram CreateWatchDog(Area area, NetSystem sys)
         {
-            return new NetProgram("Watch_Dog", 5, 4, area, sys);
+            return new WatchDog("Watch_Dog", 5, 4, area, sys,null);
         }
-        public static NetProgram CreateHellHound(Area area, NetSystem sys)
-        {
-            return new NetProgram("Hell_Hound", 6, 6, area, sys);
-        }
-        public static NetProgram CreateFlatline(Area area, NetSystem sys)
-        {
-            return new NetProgram("FlatLine", 2, 3, area, sys);
-        }
+        //public static NetProgram CreateHellHound(Area area, NetSystem sys)
+        //{
+        //    return new NetProgram("Hell_Hound", 6, 6, area, sys);
+        //}
+        //public static NetProgram CreateFlatline(Area area, NetSystem sys)
+        //{
+        //    return new NetProgram("FlatLine", 2, 3, area, sys);
+        //}
 
-        public static NetProgram CreateBrainWipe(Area area, NetSystem sys)
-        {
-            return new NetProgram("BrainWipe", 4, 3, area, sys);
-        }
+        //public static NetProgram CreateBrainWipe(Area area, NetSystem sys)
+        //{
+        //    return new NetProgram("BrainWipe", 4, 3, area, sys);
+        //}
 
         public static NetProgram CreateInvisibility(Deck deck)
         {
 
-            NetProgram res = new NetProgram("Invisibility", 1, 3, deck);
+            NetProgram res = new Evasion("Invisibility", 1, 3,null,null, deck);
             res.ProgramType = ProgramType.Evasion;
 
             return res;
@@ -152,35 +214,19 @@
         public static NetProgram CreateStealth(Deck deck)
         {
 
-            NetProgram res = new NetProgram("Stealth", 3, 4, deck);
+            NetProgram res = new Evasion("Stealth", 3, 4,null,null, deck);
             res.ProgramType = ProgramType.Evasion;
 
             return res;
 
         }
 
-        public static NetProgram CreateMurphy(Area area, NetSystem sys)
-        {
-            return new NetProgram("Murphy", 2, 3, area, sys);
-        }
+        //public static NetProgram CreateMurphy(Area area, NetSystem sys)
+        //{
+        //    return new NetProgram("Murphy", 2, 3, area, sys);
+        //}
 
-        public string WatchDogLogic(params object[] obs)
-        {
-            string res = "Watch_Dog starts sniffing around!\n";
-            if (obs[0] is Player && DetectPlayer((Player)obs[0], this))
-            {
-                res += "Regina! Thou Art Found! Watch_Dog Locks on to you with dead canine eyes and starts barking!";
-                MySystem.Alerted = true;
-            }
-            else
-            {
-                res += "Watch_Dog is not alerted for now. But it won't be long before it tries again";
-            }
-
-            Console.WriteLine(res);
-
-            return res;
-        }
+      
 
         public string InvisibilityLogic(params object[] obs)
         {
@@ -190,6 +236,27 @@
             return "A shimmer of benign static noise, that let's you hide your presence, surrounds you like a blizzard. You feel invisible!";
         }
 
+        public string SeeYaLogic(params object[] obs)
+        {
+            Console.WriteLine(  "Warning dumbass, this AINT DONE YET MORON!");
+            if (obs[0] is Gate)
+            {
+                Gate gate = (Gate)obs[0];
+                this.ProgramStrength = 6;
+                DecryptGate(this, gate);
+                this.ProgramStrength = 4;
+            }
+
+            if (obs[0] is NetProgram)
+            {
+                NetProgram prog = (NetProgram)obs[0];
+                DecryptProgram(this, prog);
+            }
+
+
+            return "The silver shimmer fades.";
+        }
+    
 
     }
 

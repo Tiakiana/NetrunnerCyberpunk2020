@@ -17,6 +17,10 @@ namespace NetrunnerConsole
         public int InterfaceStrength;
         public int SystemKnowledge;
         public int Intelligence;
+        public static Player inst;
+
+        public int Stun = 0;
+
 
         //public List<NetProgram> MyPrograms = new List<NetProgram>();
 
@@ -33,11 +37,12 @@ namespace NetrunnerConsole
         
         */
 
-        public Func<int> ScanningAttempt  => () => { return InterfaceStrength + SystemKnowledge + Intelligence + RNG.RollD10(); };
+        public Func<int> ScanningAttempt  => () => { return InterfaceStrength + SystemKnowledge + Intelligence + RNG.D10(); };
 
 
         public Player(string name)
         {
+            inst = this;
             Name = name;
             InterfaceStrength = 10;
             SystemKnowledge = 10;
@@ -45,12 +50,5 @@ namespace NetrunnerConsole
         }
     }
 
-
-}
-public enum ProgramNames
-{
-    Jackhammer,
-    Daemon,
-    Worm
 
 }

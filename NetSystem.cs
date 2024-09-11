@@ -32,7 +32,7 @@
             NetProgram.CreateWatchDog(south, this);
             
             Area inner = new Area("Inner Fortress");
-            NetProgram.CreateFile("File: Financial Transactions", inner,this);
+            NetProgram.CreateFile("File: Financial Transactions", inner, this);
             NetProgram.CreateFile("DB: Employee Records", inner, this);
             NetProgram.CreateFile("VR: Fractal Conference Room", inner, this);
             NetProgram.CreateFile("File: Business Records (Procurement), Gray Ops (bribes)", inner, this);
@@ -43,15 +43,15 @@
             NetProgram.CreateFile($"Terminal:Secretarial Area", inner, this);
             NetProgram.CreateFile($"Terminal: Executive Offices", inner, this);
 
-            NetProgram.CreatePoisonFlatline(inner, this);
-            NetProgram.CreateFlatline(inner, this);
-            NetProgram.CreateHellHound(inner, this);
-            NetProgram.CreateBrainWipe(inner, this);
-            NetProgram.CreateFile("Accesspoint: Militech Los Angeles Metroplex",inner, this);
+            //NetProgram.CreatePoisonFlatline(inner, this);
+            //NetProgram.CreateFlatline(inner, this);
+            //NetProgram.CreateHellHound(inner, this);
+            //NetProgram.CreateBrainWipe(inner, this);
+            //NetProgram.CreateFile("Accesspoint: Militech Los Angeles Metroplex",inner, this);
 
 
 
-            
+
             new Gate(west, north, 0, -1);
             new Gate(west, south, 0, -1);
             new Gate(west, inner, 3, -1);

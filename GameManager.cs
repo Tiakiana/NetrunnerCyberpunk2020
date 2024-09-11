@@ -33,7 +33,7 @@ namespace NetrunnerConsole
                 if (item.Name == "Watch_Dog")
                 {
                     NetProgram prog = item as NetProgram;
-                    prog.Activate(enter);
+                   prog.Activate();
                 }
             }
             return res;
