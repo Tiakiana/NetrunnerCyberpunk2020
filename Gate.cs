@@ -1,4 +1,6 @@
-﻿namespace NetrunnerConsole
+﻿using System.ComponentModel;
+
+namespace NetrunnerConsole
 {
     public class Gate
     {
@@ -10,7 +12,7 @@
 
         public Gate(Area outSide, Area inside, int gateStrength, int team)
         {
-            GateName = "a" + (Broken ? " broken" : "") + (gateStrength == 0 ? " passage from " : " gate from ") + outSide.Name + " to " + inside.Name;
+            GateName = "a " + (Broken ? " broken" : "") + (gateStrength == 0 ? "passage from " : "gate from ") + outSide.Name + " to " + inside.Name;
             Inside = inside;
             inside.Gates.Add(this);
             OutSide = outSide;
@@ -18,6 +20,25 @@
             GateStrength = gateStrength;
             Team = team;
         }
+
+        public string GetName(Area area)
+        {
+            if (OutSide == area ||Inside == area)
+            {
+                return $"a {(Broken ? " broken " : "") + (GateStrength == 0 ? "passage leading to" : "gate leading to")} {(Inside==area?OutSide.Name:Inside.Name)}";
+            }
+            return "Not available door";
+        }
+
+        public string GetAreaName(Area area)
+        {
+            if (OutSide == area || Inside == area)
+            {
+                return $"{(Inside == area ? OutSide.Name : Inside.Name)}";
+            }
+            return "Not available door";
+        }
+
 
         public void Transition(Entity entity)
         {
