@@ -38,6 +38,7 @@ namespace NetrunnerConsole
 
         public void DeRezz()
         {
+            Console.WriteLine( Name+ " screams as it Derezzes");
             MySystem.entities.Remove(this);
             Area.Entities.Remove(this);
         }

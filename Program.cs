@@ -29,7 +29,7 @@ namespace NetrunnerConsole
 
             p.Player.Area = p.System.Areas[0];
             p.Player.Team = 3;
-            for (int i = 0; i<10; i++)
+            for (int i = 0; i<1000; i++)
             {
                 Console.WriteLine(  );
                 Console.WriteLine("Your Command, thy Majesty?");
@@ -87,6 +87,9 @@ namespace NetrunnerConsole
 
                     case "":
                         Console.WriteLine("What would you like to read?");
+                        break;
+                    case "CLEAR":
+                        Console.Clear();
                         break;
                 }
             }

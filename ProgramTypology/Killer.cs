@@ -32,6 +32,7 @@ namespace NetrunnerConsole.ProgramTypology
                 {
                     program.Name += "(Derezzed)";
                     program.DeRezz();
+
                 }
 
             }
