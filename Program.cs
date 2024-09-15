@@ -14,12 +14,85 @@ namespace NetrunnerConsole
         public GameManager GameManager = new GameManager();
 
 
+        public static string ascified = @".'--`-  --. .-'''`-`'`'.'.`.  '- '.`'-.-'.- '`.`'' .' '`.'   '` '.-.  `. `.  -'` .-..  . -.'.` .- `- . '- '`  . '  . -''` '    -.`.' -``-  - `-
+'--'--  .  '-' . '`'`  ` '  -``-'-'-  '. '  `  -`'.'```  -`. --.'` . '`` . .   '---`' ' `- ` -   . .'.`- .` '    `.  -. '-.-.  `.` ' ` ...``'. 
+-    -  `-' '  `''`...'`-  '.'  '.-`-  .`' '..'.  - '-.`--   .-  -. ` .` -' `'``-` ' '`  '  `  .   -` ` ``` .`.-`'   - --  .'  ``. -.`.  ``-` .
+'..` .'   -----`-   .` '  . `  . .```  -       --'-   . ---'  .``.. -`. . '' ` . `--`` -'   '`'````.- `-'` ---...`'`-'.  ``-` - `  '-``` -  -.'
+ ''  --  -' '   `-`  `` .`.---   `.   .. .-.`    .-'-`-`' `  ..``. . -' '.-' .`.` .'.' '-- --- .-`.` '`'.- '`-. ... -' '` ' -'  `.``.--  .`.--`
+.'.'  '``.--  '-..-'  ...-- . -''  ' '--.' -''-''. '`''..' -'``.  `  ''`   `.---.-'-`.`-  '-  .-'' ' -'-' .   - -'`. ` - '  .  `-`  .``'''  '-'
+ -``   ``` `'.-'     .`'`'`. . .`-.- . .-. .' -. .`.- . `.. -. .'-'-.`. `-- .`. `.- -.  - `   '`' -.   .`` -- '.''`--`  -` `-.'-'-'`.'' '-   . 
+.'.  . .' `.-- -'' -' '... `. -.'--...'` ``  `'  - '..-  - '.... '-``  ' `- '   `` ``.  '-    -`  '-.  '- .```' `  '.`--' -..`' -.`. `'''.`.`' 
+.'` - .``.'' ` -'`-`' ' ' --'  .`- '`'  - `- ---  -.'.'`' -  -.`   -   C~'  `  ' '-` `.-  -.' ' --`.'`'  .  -   '`` '.` -.`    --..  ``` '-`'  
+` ``-  -`-` . -' `-`. ...   -'..` ``.`.` '.` . - `- ` - '-`` ---'`.' .5Hq^ -.   '  .`'`----'  -`  --''..  `-` ..-'. ..'- -' .-.`'''-`   .' ` --
+-` ''--``'   ..'.```.....  `--' '-'  `'-'- '`.`. -`'   .--' .``-`.  .aggg6!- .- '`. ` . `   -` -'' ' '''-'   `-`   -  .-`- '`-''`  `'--    .  `
+   . ''..-        ''--  '- .- '   ..'``-- ' -.'-` `  .`. -'    .`.'`yRWWQg4.`   `- '-.-  `` '.`' ..`-..  .- '.. -  '.'- -'.' -' `. `.`-`  '   `
+'.--`.- `'. `.' -`'`  '.'. '         `.''-' `. -'`' `. `' -`- '..-->gWWHQWQ?.` ..  ..-.` --'' .. '. '  -`. '- '. `-.'..`.`-- - --.-`'-`''---'-'
+-'.`    ``'' . .  ..      '-''`. ' '-. '-`. .` .''  . '--   -- -.-.xHRBRHHRV  `` ..-''  .. `  .` ..-`.-``` ..`` .`'`   ''.' .' ''..-`.'.- .''-'
+` .-'``- ` - ` `..    ``  `  ``'.'' .` -`  `-'  '- ''-` ` '.     ``vgWRQQgHu`  ` -    ..  ` . -`   '-.`  '' .  `.-`. ` --`'--`. .`-'  ``-` .-' 
+ .-'-` `'.`.`. .`- `' ` ` ``    -. .'- -' `..' .''   -'. -``.--~/v! lMgWQD2!>v?.-'-` ''  '  .-`.-.` ``-.. ' --' .' `-  .  ' ..- ''.. -. -  '  .
+ -`..` -'  `- ``--.-.   . . --.''` '--.` -`-`- --`` --.` . `-`<@WBQ#=-*i(,vmgQg%.`  ..-.-.`.. ---.'' .-.  - .`.`  .`' .'.'---.`'-   -.` .   -`'
+'-'  '` - . `--'`  -.`'. `.- -- .- `` -... ' `. .'- . `. - .-.,bWHRWgy- ,6gWgWH2-- - .        - '`  -'  '  '' . . `. ' ''` -- - .     .` -'  '.
+```'  `''`  `'` -.` .... '`   -' .`--'``   ..-' -   .`'.` --'`  ;SWgHga>bgRRQu>-'     - `-'``  ' `  .'- -  -` -.  .` `.`.`.'''-`    `.`-' '. .'
+   -.'`.- -'` .'.. -`-'  `  . . ''' . .` '.. '' `-   ' `i6qZt;''``tgHQQDBRQN?`-`.\y5K$='    `.. -.- -' ..- ' '.'-- -  .-` `.'.  `''' ` '' ''- `
+.. ` '`   ' -` ' .  '-'--   ' --`  '-`.-'.'' `-- . -' -'OHBgQBMf:' 4gWHQWWBv -<u&ggRWHF-.  -`'. ... --  . - - . -`- '.-'  '.`.'    . .` - '-` '
+` `-'  .''..``''- ` '``'' `.   .  ---`'.-`.`. -'-`'.'``-+1$@BggR&Y-!ORHRHW5'!3QgBWRMj}: -.  .'. `''``'`  .-  .'`'' ``' -.-   -..'-``   '-'. ' `
+- ` -`.`` `- - - .' --``-  .' '' --.``-`  ` ` `-'+<*>< -.'.'i6WHRRd+YBBgHgr)OgBWWI; -  -:>*=;>^` . . ... `-'-''`'' .-'--  .`.   ''.- --.``..` .
+ '`  - `-.  `'  . .`-f!-' ``.-` `-``-.- .'.:xCSORBQBgBQM%ui_.-iDQRB&iWHWW87RWQRq*'.<TaG&BRgWgHHO9jv:` '`.  '`.` -.-- '. ""z.` -. - ' ...- -`-.- 
+ .'`'.`''...`-' .'  >BD2_.'- -`-''`''`` :}EggWWHWgRRWggWHgRHA1_<GWWBDHBQRDWWgWZ^<yMQWHBRQQQgQgBWgBB@Xi ..  `-' .--'` '""kWO '.-.-.- ''``   `.` .
+.. .   -` - ' ..'.  ;RWBNT. -   `  ''-^1&QQQHgBWNK9ZAqNgWgHHHWB4rhBBgggBRWHgH#|XQHHRRgQROwX$6MBWBQQWWQ0}' .`-`` `-- ,ugQgQ-   `'-` `.-' ``     
+.-`  '. `-''-`` . .->gHRHgV ':]F1,-` /MgQgRRgS1r`----  _voOWBHQWH#&BRggHQQHBMwWRBWHQGy(^  --.':/zURWHHgRG; - +Tov'-:pWRBgB-`- ' -`  ''  '`.- `-
+ - ``   `  -' . '.`- AgBBQg+>ORWQm -fggHWBg4""-. ..'` ..   -iPHgRQWQHRBWWHRBRQgRHQgu= -. - ' .`'. .?XHWgWW@]- OQBQ9_|BBWHQF- .   - `'`'`` '---`.
+ '`  `''-.'`---` 75ezvYXGPv.PgRR@(.aQQWWW8;   .'. `  . -.'-.`(mgHBBRWWQQWRHgQQRH$+  '  ..`   . ' `.'/OggHWBf YggBgV xhqVYvfkei  -  ` -`.. ` ``'
+`   -`'` ' -`  '-OBBHRNV=`-+BQgW[-jBggWWX,`'`-' .' ` `'`  '`.:>$HHWHBHRWRBWBBQQy<! .. -.'  ..--`' ''',AggBRQ1-sRQBH:` ?ZBQBQRA'.'-' '-`- . '.  
+...' ..  ` `-```-:LuMBHgBk>?RRBH:vgBQWW$ ``'.-.... -. -  :YXORBRgBBgRRWHHggHgRHBWQO$}^   '.  ``.-.  -.,EWgHgW(rBRBW</6HQQQd2}! -     `-'-   .. 
+'`' '.`-.rTu59wE6XjT)?5BBBg$BBBg>OgRBgK_''`..`''- ` `` `T@BQBWRBgHgWgWQWBQBWHHWRWWgBgNY ---  `.  '''.`.^ORQHHK|BggWZBBHRe;/xu#$A%65jc*'-.--`. .
+`-    +FDgHHWQgRQgWRggd0HWBRRgBR%BWgQB1i{i?+ ..-'-`.. `zRHBBu/^^""]bWRHgWQQggAl<,+)3RRBRL . `' . ''`<)vcvsQQgQB#BBBQHgRWkqBgBQHgggQBRWWMf< ' .''
+-.`  1NHRWQBWWDONggWHQQgHHRHgHBgQBBQgHQHHBRQO4= '-' `' MQRBY``' .' AWgBBggWX-`. .''zWHB% `... .`|e@WWHQgWgWHHWgQQQWWQHWgHQHRBBDODQHgHHHR&1--.-.
+```-eHWWQWNf?: ' -+xOHWQBHQRRQBRWRBWBBHMh9OQgQQu `'`  -eBWH%r- ikSziHWBHgWQ/jPZ/`';mgHB$..'`-`_3RBWQOE9OBRgBBQBggRHRBRWHRg8[>`-' ^/uDWRQBRF  '-
+  -}HHHWRk~-`-`.-=kQHBWgWQWHBQHgHRBHBB} - -;MHWgo- -'--!PRQHBgNRQQBvRggWWHN|gBgBDNHgRQ%:'' . 'ogHWd= .-'THQgHHBRRBgBBBHHHgRHk""`'.`' _kgBBgW7..-
+`-'MBRWRm.-.--' /WggWMaFIOBgRHQRHgQHQo    '.|gRB@ ' '`-' ?eMRHHW@X\=HWgBBBQ</ZNWWWRqC/`` .'.''@gQg=.` .'`aBWQgRRgWgWgO4nVNggWW\ --`- 'KRHRWO.` 
+'-^HHBHRi  .  -.ZWRRX . `'=kWQggBHHgg]`' . `VBgWM`  '.- - -`.>+<  .9gHRWgRBw`..<<+-' - ' `-   MWQHo'   -`iQHWQWBHHRk""``' '$ggW$  ` ..`iHQWWQ>  
+'`>BWBBg~' -  `-jgBQX-`--   vOWQRRBBR; .  iOHHQM) '``. <il1ff1[/_.|QQWQQBQQR/-,?cYttz[i>.  `'.?NWRgO[.-' =RRBgBQQMv. `  - 5BRHj``.' '`_BHBQg< -
+``!gBWWg+ ..  --_dRRRX(` .' .-{&QWBRWl`':XHWQgu!  - ?aNHRgRBRHWRBpjisWRWRgyvtGBWBWQWHHgQ@a? .`'+VQRQBE!-'iQQQHHQ}` '. ..|ZgWRb^``--. '<QWRRR_`'
+ ``$QgHg{ - -`` -^t&QBRNm#1r` `\NBRBWk  EgQRm;`.`-^XHQWBO$JztF5MBQRgdWWRWgOBBRBMX2syFkMHgWH%>  -`+wHBHE' ZgggBQv '-=l4b@gRQQC_.  - -  xHBBQ%`''
+---;WRgBq.----...` ~]5OQHRRWMy: |BHRQg*=BgRH+` - ~MWggk;-.'  `  =4BRWBHBgQggg4"" '  .  `""$QgQO<. ` !&QgH=<RWQHR}.^tMBQgWRMZT_`''  -.  .dBQHQv`- 
+.` '3HRBHY`'''.'-`'''``~)TEgWg@1'tWHHB9=HRWO `'``tRWRw  '``.'  `  \NWBWHHgQHv  ``. `' -  wHQRu -`- ABWWv$BRgWe`7NRRBh1/~ -'-` -` -.``]QWRg% .- 
+'.''<QRBg&"".``..-'` .`. .. ""$WHW$,OWHRB1t99Y `.' sHRBe ` ` -  -'`-.4HWBQBQHw. ' ' .'`. `.IWHHC.`''`{h%yLHWgB@_oQgB9r-`` '`-. `---`-';DBBWO~ -`.
+ . . ygHRR@r `. .-`'  .-    `TpqC fRRggRi '.''`  <OWgWz!` ' .-'  .(RBgRgBBQQv`.`  '  `- YRQg@<..`.`-` )gWQHQe zbqt.'. '`.  ` -`' -`+MQQBO<  . .
+  ``.-TRQBWNv .``-  . .'.'`  '' -'(RWgWRQ7    -`-`+5RBgNVY719QQ# >&RBWRgBHHWN| n&gPfLYCMRBQb"" '' - -`iDBHHHQT`-.-' '    ` . -`` `.""MgBBH/-.  -`
+.     -|ORBQQC~. .```.   .`    `-`rBWgHBHRI^`-''  ` /VDBBgHQBW&z?@ggQQBRQRHRB&i}MHQgHHBgNZi .  .-'``zWBRgRWgl-.-.-. ` `'' '`'---.1DgHB&)`-``- -
+'.''  - ~#BggHOv   `  ` ..'--  '  1QHHHRggQM[` '-```-` rcsffc;_sBHggRRRgBBHgBHHa,""[sttL? -.   -' `v0WQRBHgBH4-'` `-''..-  '   .*EHgBQP> `   .  
+ -.'`''---lDgRBW6v-` - -'''`.  ``_OWRgRgHBWggMY,.''`   '-` '!1MWQBBRBWQgBHgHQBBB&z>'.'. `''. -.,cUgHWWQRgWHgN""`'.'`..-  -  - ;5gWQgRf.`.  `..  
+ - .`  `'' rMQHgWQOf+ .''- -`'. >0HBHRgRWgBggHRBhz/> .- :|YZWWQBBBBRRBQBQRgHQgRggWRwy?>`.-.!|Y5DWBRHBRgQHRHHQO*- -    `. `_c9WBgWQ&i ``--. ``. 
+-'`-'' -''` <OWgWBQgBKjl""^--`+i4@QQHgQRgBQQHBBWBQRgBB&DQRQWWgWWWWRQRgRgRHRRggBgHWQQRQBBH@@RHHQRRQHggHHgQgBBRWQBkc< `'_>is6BBRBRgQH(` .  - '.'` 
+.` ``.`.` .--|HgQHgWWggQWRDDHRRHgHHRgBBgBHBBQBRWgRRgggRBBHHHHRgHBRgWHgBgQQHQRHWBWBRWWQBHRHHRRgBHQRgWgRHRgWQQHWRWHWH&DgggWRQHQWBgHY '` `' '''. .
+-` ``'''''. ` 3QRBgRWRHWWQBQggWHRgRgQgQBHBgWRWRWD@OM0b966$Zk33#eVajnu2ojjjuua##43I3XZ599w9qmMO&&RBgHWWBggRggHHgWRHBQQWRWBHRBHHBHM -.  `'  `'' -
+'`  `.`. ' .` \gWHWWRHQRBRBQDMd6Z#jt1[cv/r*+<_ _,_+++""*r\))vv{L]YT<`'.`'-'  ~L1Y7x[vii)(*""r<>+:^!^~+>;?vlLTso3ak%pO&HggWBWHRQRgQv-`  . .-` ' -.
+'---''-'-'  '--|n$Iot{v(*<: !+*\vclTY, `.': '- vKRgWBBRBBQHBRWQRQv  ~y509I/  +GgWBQBBRWRQBHWgWD1~ . _~.. -LytTxv);<:!+=|v}zuI$u|---`' -`'` -` -
+-- ` -  '  ``'   ,{Ttu3XAM&gBBRQQgRQi 'r9NRHOt^ -jWBHgHHRgRQBggHX'. OQWWHRH['-/BQRRHHgBHHBBQRU_`-1qDHRm7  !UWHHBWHRHWDOdX#FtTv `--``  - -'   .-
+-'` `''`-`.-. `  '5BBHWRggWgQHRgHWRO' -wRHHBRQ$.',BHHgBQRggQRWBH8``-ZgHggg@;-'}WRRWWHHgBRBQRWi .[HWBWHRg,  3BRBHWWRQBggWgQgRBt   `'  -'  '....`
+' `   `  ``  . .  _OgBWRWWBHRQWggRQHY` *6HQRHO\ -*gRQRRBQQHWgHWHQA<`-""7yTv, `1@RQgWgHHWgHgQRHC-`+hgQWWM7  ""NBBWWBWWRQHQgBQBR5   .'```` '`-`    
+```  `-- -- .`''   rNWHQBRRQBQgWWRg@@o! -,=;+`..-YzT1TT{}l{viiv|)|(` '  -`-.<(/vviv}{L{T111zys<- '_;""<'`!TDWBRBRHBBQRBBQQQRO!' -.-` - `- -  '. 
+' -` -  ```' ..``.` v#uFtTcvv(*>+^`.-'` `- ~!,!>>""""""(\?vvi]{{Y1YYTTT11TTfzfff11T1YY}cx}[vvvi)?rr>>+^: ` `.- ^++""(ii7TyjI$$A;-'`--' . '-''`  '. 
+` ` ' ..`-- '   .. `` r/iixTtfn#4ZhP0MONNgWWWgBgBRWBBWgWHggHRggHHBRHHBHRRWWgWgWWWBgRBgHQQBWBWQggBgQBQHRNNOKGA9kaVjsy1}i|\>``.'    ` `- '-` ' ' 
+ `-'`` '`''  .`. ''' 5WRHBHRQBQgWQHRBWBRBg@@OObGwAw$k$X33VeojouCutzszyftssyytCCjjjJFCIa4$Z55$hA9qpqMONWRggRRHRQHBBBHRgRBHHf -. .`'' - -.'.. ``-
+` -  .'`. '.``. `` -'r4kX3C2t1Y{vv|r*<__'`-`.   ' '``- ``-'- '. -'` .`- - ''' ` '` -``---`  ` '-.' ''` .:_<;=/ii}Yfy24X$$j>`.. '`'-`.-```   --.
+.   `.''.''`' ` ``. ` .'.-` -  - -''``.``. '.- -- -. - --.. `-  ``'` `' '. '    - '.''  '.     -. --...-`.`'- . -''' ''.``'` - -` .- .'.  .-'-`
+    --' . .-.- '`'`` '-.    . - . `'-'.'- . - - '' '`.-``.`.`. --   ``  ` .   - `` ``'- ``-..'. - ..   .--'-' .'-  ` -'-.'  .' '''   `'` '    -
+'. ' '`' .`  ..`  - ..-'.`` -.`'  `-`-'..''.' ' -.. -' `  -'  ' '     - `.' '`  -..'`' -        -- '-   '`  - `- '--` .' . '. ' .`---'` -`'--  
+   .'  `' -  '`'   .  '   .' -` ' '`..`''` .- . . `- --. '`- .-`'` '    -.....   .`..'' ``'  `.  .` -..` ..''' '. `' --`'--  ``-'- '`-.' ....  
+ .-.-. ..`.`` ' .'-''-` `  -   . '-.` -  ` ..  ' . .` ' -'.   -.'`'.`--.  .`--``.  .. `- '-' ` .-   - '` -`. ` ..` ```-.-``  '.   `-..   ' ''' 
+.`''..-``-  '`  .  - ````-   -- .`  -.-   .'' ` '   ' .  -`-''- - '`.-`'  -..` `` -   -`-` `  - .'- -`.'-- - --'- ` '`-`'  `'..  --`   -'`. ' -";
+
+
         static void Main(string[] args)
         {
             Console.ForegroundColor
         = ConsoleColor.Green;
             Console.WriteLine();
+
             Console.WriteLine();
+            Console.WriteLine(ascified);
 
             Console.WriteLine("All Hail the Majestic Regina! How can thy serfs help thee?");
 
@@ -163,7 +236,7 @@ namespace NetrunnerConsole
             NetFile file = ChoseFile(Player.inst.Area);
 
             Console.WriteLine(file.Read());
-            //Todo let them Eat their own deck.
+            //Todo let them read their own deck.
 
         }
 

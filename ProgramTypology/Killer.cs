@@ -17,14 +17,14 @@ namespace NetrunnerConsole.ProgramTypology
         {
             Console.WriteLine(Name + " gleams in your hand, ready to destroy!");
             NetProgram program = Program.ChooseEnemyProgram();
-            int attackroll = RNG.D10();
-            int defendroll = RNG.D10();
+            int attackroll = RNG.Dee10();
+            int defendroll = RNG.Dee10();
             Console.WriteLine(  $"{ Name} flies towards it's target {attackroll} + {ProgramStrength}]");
             Console.WriteLine(  $"{ program.Name} tries to defend {defendroll} + {program.ProgramStrength}]");
 
             if (attackroll+ProgramStrength>= defendroll+program.ProgramStrength)
             {
-                int damage = RNG.D6();
+                int damage = RNG.Dee6();
 
             Console.WriteLine(  $"{ Name} strikes true! {damage} is inflicted");
                 program.ProgramStrength -= damage;

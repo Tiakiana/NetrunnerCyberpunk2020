@@ -17,7 +17,7 @@ namespace NetrunnerConsole
         public int CoolDown { get; set; }
 
         //Todo: Byg en måde at checke døre på
-        public Func<int> ScanDefence => () => { return RNG.D10() + ProgramStrength + MySystem.DataWallStrength + (MySystem.Alerted ? 10 : 0); };
+        public Func<int> ScanDefence => () => { return RNG.Dee10() + ProgramStrength + MySystem.DataWallStrength + (MySystem.Alerted ? 10 : 0); };
 
      
 
@@ -38,6 +38,7 @@ namespace NetrunnerConsole
 
         public void DeRezz()
         {
+            Console.WriteLine();
             Console.WriteLine( Name+ " screams as it Derezzes");
             MySystem.entities.Remove(this);
             Area.Entities.Remove(this);
@@ -62,11 +63,11 @@ namespace NetrunnerConsole
 
         public bool DecryptGate(NetProgram attacker, Gate gate)
         {
-            int attackerroll = RNG.D10();
+            int attackerroll = RNG.Dee10();
             Console.WriteLine(attacker.Name + " tries to force open the gate [" + attackerroll+ " + "+ attacker.ProgramStrength);
 
 
-            int defenderroll = RNG.D10();
+            int defenderroll = RNG.Dee10();
             Console.WriteLine("The gate tries to resist! [" + defenderroll+ " + "+ gate.GateStrength);
 
             if (attackerroll+attacker.ProgramStrength>= defenderroll+gate.GateStrength)
@@ -86,11 +87,11 @@ namespace NetrunnerConsole
 
         public bool DecryptProgram(NetProgram attacker, NetProgram file)
         {
-            int attackerroll = RNG.D10();
+            int attackerroll = RNG.Dee10();
             Console.WriteLine(attacker.Name + " tries to force open the file [" + attackerroll + " + " + attacker.ProgramStrength);
 
 
-            int defenderroll = RNG.D10();
+            int defenderroll = RNG.Dee10();
             Console.WriteLine("The file tries to resist [" + defenderroll + " + " + file.ProgramStrength);
 
             if (attackerroll + attacker.ProgramStrength >= defenderroll + file.ProgramStrength)
@@ -113,13 +114,13 @@ namespace NetrunnerConsole
             List<NetProgram> evasions = player.ActivePrograms.Where(x => x.ProgramType == ProgramType.Evasion).ToList();
 
 
-            int playerroll = RNG.D10();
+            int playerroll = RNG.Dee10();
             int strength = evasions.Count > 0 ? evasions.Max(x => x.ProgramStrength) : 0;
 
             Console.WriteLine($"[{player.Name}s evasion check was:  {playerroll} + {strength}]");
 
 
-            int computerRoll = RNG.D10() + entity.ProgramStrength;
+            int computerRoll = RNG.Dee10() + entity.ProgramStrength;
 
             Console.WriteLine($"[{entity.Name}s evasion check was: " + computerRoll);
 
@@ -175,9 +176,9 @@ namespace NetrunnerConsole
 
     public partial class NetProgram : Entity
     {
-        public static NetProgram CreateFile(string title, Area ares, NetSystem sys, string content ="Some important info")
+        public static NetProgram CreateFile(string title, Area ares, NetSystem sys, string content ="Some important info", int strength = 3)
         {
-            return new NetFile(title, 2, 3, ares, sys,null,content);
+            return new NetFile(title, 2,strength, ares, sys,null,content);
         }
 
         //public static NetProgram CreatePoisonFlatline(Area area, NetSystem sys)
@@ -193,10 +194,10 @@ namespace NetrunnerConsole
         //{
         //    return new NetProgram("Hell_Hound", 6, 6, area, sys);
         //}
-        //public static NetProgram CreateFlatline(Area area, NetSystem sys)
-        //{
-        //    return new NetProgram("FlatLine", 2, 3, area, sys);
-        //}
+        public static NetProgram CreateFlatline(Area area, NetSystem sys)
+        {
+            return new NetProgram("FlatLine", 2, 3, area, sys,null);
+        }
 
         //public static NetProgram CreateBrainWipe(Area area, NetSystem sys)
         //{

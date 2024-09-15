@@ -15,10 +15,16 @@
 
         public NetSystem()
         {
+            
+
+
             DataWallStrength = 5;
             Intelligence = 6;
             NumberOfCPUs = 2;
-            
+
+            Area outskirts = new Area("Outskirts of MiliTech sattelite office");
+
+
             Area west = new Area("West Side of Fortress");
 
 

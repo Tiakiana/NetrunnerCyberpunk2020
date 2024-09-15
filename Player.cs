@@ -1,14 +1,8 @@
 ﻿using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 
 namespace NetrunnerConsole
 {
-    public class Deck
-    {
-        public string Name = "Awesome Destroyer Deck";
-
-        public List<NetProgram> ProgramList = new List<NetProgram>();
-
-    }
     public class Player : Entity
     {
         public int TraceStrength;
@@ -37,7 +31,7 @@ namespace NetrunnerConsole
         
         */
 
-        public Func<int> ScanningAttempt  => () => { return InterfaceStrength + SystemKnowledge + Intelligence + RNG.D10(); };
+        public Func<int> ScanningAttempt  => () => { return InterfaceStrength + SystemKnowledge + Intelligence + RNG.Dee10(); };
 
 
         public Player(string name)

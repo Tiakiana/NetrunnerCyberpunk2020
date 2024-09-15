@@ -20,16 +20,16 @@ namespace NetrunnerConsole.ProgramTypology
         public override void Activate()
         {
 
-            int rollattacker = RNG.D10();
-            int rolldefender = RNG.D10();
-            List<NetProgram> evasions = Player.inst.ActivePrograms.Where(x => x.ProgramType == ProgramType.Protection).ToList();
-            int strength = evasions.Count > 0 ? evasions.Max(x => x.ProgramStrength) : 0;
-            Console.WriteLine($"The Stun fires at {Player.inst.Name}; [{rollattacker} + {ProgramStrength}]");
-            Console.WriteLine($"You defend yourself [{rolldefender} + {strength}");
+            int rollattacker = RNG.Dee10();
+            int rolldefender = RNG.Dee10();
+            List<NetProgram> protections = Player.inst.ActivePrograms.Where(x => x.ProgramType == ProgramType.Protection).ToList();
+            int strength = (protections.Count > 0 ? protections.Max(x => x.ProgramStrength) : 0) + Player.inst.InterfaceStrength + Player.inst.Intelligence;
+            Console.WriteLine($"The Stun is zapped at you, {Player.inst.Name}; [{rollattacker + 10 + MySystem.Intelligence + ProgramStrength}]");
+            Console.WriteLine($"You defend yourself [(roll){rolldefender} + (protection) {strength} + (interface) {Player.inst.InterfaceStrength} + (int) {Player.inst.Intelligence}]");
 
-            if (rollattacker+ProgramStrength>= rolldefender+strength)
+            if (rollattacker + ProgramStrength + MySystem.Intelligence + 10 >= rolldefender + strength + Player.inst.Intelligence + Player.inst.InterfaceStrength)
             {
-                int roll = RNG.D6();
+                int roll = RNG.Dee6();
 
                 if (Player.inst.Stun > roll)
                 {
@@ -40,8 +40,9 @@ namespace NetrunnerConsole.ProgramTypology
             }
             else
             {
-                Console.WriteLine( $", and with ease you avoid the attack");
+                Console.WriteLine($", and with ease you avoid the attack");
             }
+            
 
         }
     }
