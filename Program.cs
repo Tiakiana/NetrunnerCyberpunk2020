@@ -80,7 +80,7 @@ namespace NetrunnerConsole
 .`''..-``-  '`  .  - ````-   -- .`  -.-   .'' ` '   ' .  -`-''- - '`.-`'  -..` `` -   -`-` `  - .'- -`.'-- - --'- ` '`-`'  `'..  --`   -'`. ' -";
 
 
-        static void Main(string[] args)
+       static void Main(string[] args)
         {
             Console.SetWindowSize(145, 50);
             Console.ForegroundColor
@@ -89,7 +89,9 @@ namespace NetrunnerConsole
             Console.WriteLine(ascified);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine();
+            Thread.Sleep(500);
             Console.WriteLine("All Hail the Majestic Regina! How can thy serfs help thee?");
+            Thread.Sleep(1000);
 
             Program p = new Program();
             p.Player.CurrentDeckEquipped = new Deck();
@@ -103,6 +105,17 @@ namespace NetrunnerConsole
             p.Player.Team = 3;
             for (int i = 0; i < 1000; i++)
             {
+                if (Player.inst.CurrentDeckEquipped.SerialNumberRequired!="")
+                {
+                    Console.WriteLine("Interface Chip compromised, please install a new chip and type in serial number (4 character code)");
+                    string rrr = Console.ReadLine();
+                    if (rrr == Player.inst.CurrentDeckEquipped.SerialNumberRequired)
+                    {
+                        
+                    }
+                    continue;
+                }
+
                 Console.WriteLine();
                 Console.WriteLine("Your Command, thy Majesty?");
 
@@ -206,7 +219,7 @@ namespace NetrunnerConsole
                         Console.WriteLine();
                         Console.WriteLine();
 
-                        Console.WriteLine("You look around.\nYou are at: ");
+                        Console.WriteLine("You look around.\nThou art at: ");
                         Console.WriteLine(p.Player.Area.Scan(p.Player));
                         Console.WriteLine();
                         Console.WriteLine();
@@ -214,11 +227,14 @@ namespace NetrunnerConsole
                         break;
 
                     case "":
-                        Console.WriteLine("No input detected. Are you a moron?");
+                        Console.WriteLine("No input detected. Artest thou a moron?");
                         break;
                     case "CLEAR":
                         Console.Clear();
                         Console.WriteLine("Tidying up for Thee, Your Majesty");
+                        break;
+                    default:
+                        Console.WriteLine("No such input, try again, Your Majesty!");
                         break;
                 }
             }

@@ -17,7 +17,7 @@ namespace NetrunnerConsole
         public int CoolDown { get; set; }
 
         //Todo: Byg en måde at checke døre på
-        public Func<int> ScanDefence => () => { return RNG.Dee10() + ProgramStrength + MySystem.DataWallStrength + (MySystem.Alerted ? 10 : 0); };
+        public Func<int> ScanDefence => () => { return RNG.D10 + ProgramStrength + MySystem.DataWallStrength + (MySystem.Alerted ? 10 : 0); };
 
      
 
@@ -63,11 +63,11 @@ namespace NetrunnerConsole
 
         public bool DecryptGate(NetProgram attacker, Gate gate)
         {
-            int attackerroll = RNG.Dee10();
+            int attackerroll = RNG.D10;
             Console.WriteLine(attacker.Name + " tries to force open the gate [" + attackerroll+ " + "+ attacker.ProgramStrength);
 
 
-            int defenderroll = RNG.Dee10();
+            int defenderroll = RNG.D10;
             Console.WriteLine("The gate tries to resist! [" + defenderroll+ " + "+ gate.GateStrength);
 
             if (attackerroll+attacker.ProgramStrength>= defenderroll+gate.GateStrength)
@@ -87,11 +87,11 @@ namespace NetrunnerConsole
 
         public bool DecryptProgram(NetProgram attacker, NetProgram file)
         {
-            int attackerroll = RNG.Dee10();
+            int attackerroll = RNG.D10;
             Console.WriteLine(attacker.Name + " tries to force open the file [" + attackerroll + " + " + attacker.ProgramStrength);
 
 
-            int defenderroll = RNG.Dee10();
+            int defenderroll = RNG.D10;
             Console.WriteLine("The file tries to resist [" + defenderroll + " + " + file.ProgramStrength);
 
             if (attackerroll + attacker.ProgramStrength >= defenderroll + file.ProgramStrength)
@@ -114,13 +114,13 @@ namespace NetrunnerConsole
             List<NetProgram> evasions = player.ActivePrograms.Where(x => x.ProgramType == ProgramType.Evasion).ToList();
 
 
-            int playerroll = RNG.Dee10();
+            int playerroll = RNG.D10;
             int strength = evasions.Count > 0 ? evasions.Max(x => x.ProgramStrength) : 0;
 
             Console.WriteLine($"[{player.Name}s evasion check was:  {playerroll} + {strength}]");
 
 
-            int computerRoll = RNG.Dee10() + entity.ProgramStrength;
+            int computerRoll = RNG.D10 + entity.ProgramStrength;
 
             Console.WriteLine($"[{entity.Name}s evasion check was: " + computerRoll);
 

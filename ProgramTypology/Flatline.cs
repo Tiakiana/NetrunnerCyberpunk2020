@@ -28,11 +28,19 @@ namespace NetrunnerConsole.ProgramTypology
                 Console.WriteLine("Your majesty! Our kingdom izzzz dduuuuuuuuuurr rrrrrrrr");
 
                 Console.WriteLine("");
+                Thread.Sleep(1000);
                 Console.WriteLine(".......----.........");
-                Console.WriteLine("");
-                Console.WriteLine("");
+                Thread.Sleep(1000);
+                Console.WriteLine("HEEEEERP");
+                Thread.Sleep(1000);
+                Console.WriteLine("!#!%!%¤#%¤ /%¤/%&%&/%¤");
+                Thread.Sleep(1000);
 
                 Console.WriteLine("Interface Chip compromised, please install a new chip and type in serial number (4 character code)");
+
+                string required = RNG.RandomString(4);
+                Player.inst.CurrentDeckEquipped.SerialNumberRequired = required;
+
             }
 
         }

@@ -31,7 +31,7 @@ namespace NetrunnerConsole
         
         */
 
-        public Func<int> ScanningAttempt  => () => { return InterfaceStrength + SystemKnowledge + Intelligence + RNG.Dee10(); };
+        public Func<int> ScanningAttempt  => () => { return InterfaceStrength + SystemKnowledge + Intelligence + RNG.D10; };
 
 
         public Player(string name)

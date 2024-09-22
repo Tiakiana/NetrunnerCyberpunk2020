@@ -20,8 +20,8 @@ namespace NetrunnerConsole.ProgramTypology
         public override void Activate()
         {
 
-            int rollattacker = RNG.Dee10();
-            int rolldefender = RNG.Dee10();
+            int rollattacker = RNG.D10;
+            int rolldefender = RNG.D10;
             List<NetProgram> protections = Player.inst.ActivePrograms.Where(x => x.ProgramType == ProgramType.Protection).ToList();
             int strength = (protections.Count > 0 ? protections.Max(x => x.ProgramStrength) : 0) + Player.inst.InterfaceStrength + Player.inst.Intelligence;
             Console.WriteLine($"The Stun is zapped at you, {Player.inst.Name}; [{rollattacker + 10 + MySystem.Intelligence + ProgramStrength}]");

@@ -68,7 +68,11 @@
             new Gate(south, east, 0, -1);
 
             new Gate(east, inner, 4, -1);
-
+            new Gate(outskirts, north, 0, -1);
+            new Gate(outskirts, south, 0, -1);
+            new Gate(outskirts, west, 0, -1);
+            new Gate(outskirts, east, 0, -1);
+            Areas.Add(outskirts);
             Areas.Add(west);
             Areas.Add(north);
             Areas.Add(east);
