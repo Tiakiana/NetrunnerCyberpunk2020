@@ -10,7 +10,7 @@ namespace NetrunnerConsole.ProgramTypology
     {
         public Flatline(string name, int mU, int programStrength, Area area, NetSystem mySystem, Deck deck) : base(name, mU, programStrength, area, mySystem, deck)
         {
-
+         
         }
 
         public override void Activate()

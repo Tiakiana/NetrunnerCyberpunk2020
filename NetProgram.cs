@@ -163,6 +163,12 @@ namespace NetrunnerConsole
         {
             return new Killer("Killer_VI", 5, 6, null, null, deck);
         }
+
+        internal static NetProgram CreateSeeYa(Deck currentDeckEquipped)
+        {
+            return new SeeYa("See Ya", 5, 6, null, null, currentDeckEquipped);
+        }
+
         public delegate string ActivationDelegate(params object[] objects);
 
 

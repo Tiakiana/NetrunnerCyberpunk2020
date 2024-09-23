@@ -9,8 +9,9 @@ namespace NetrunnerConsole
         public int GateStrength;
         public int Team;
         public bool Broken = false;
+        public bool Visible = true;
 
-        public Gate(Area outSide, Area inside, int gateStrength, int team)
+        public Gate(Area outSide, Area inside, int gateStrength, int team, bool visible = true)
         {
             GateName = "a " + (Broken ? " broken" : "") + (gateStrength == 0 ? "passage from " : "gate from ") + outSide.Name + " to " + inside.Name;
             Inside = inside;
@@ -19,6 +20,7 @@ namespace NetrunnerConsole
             outSide.Gates.Add(this);
             GateStrength = gateStrength;
             Team = team;
+            Visible = visible;
         }
 
         public string GetName(Area area)
