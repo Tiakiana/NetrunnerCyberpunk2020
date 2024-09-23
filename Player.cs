@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 
 namespace NetrunnerConsole
@@ -12,7 +13,10 @@ namespace NetrunnerConsole
         public int SystemKnowledge;
         public int Intelligence;
         public static Player inst;
+        public List<LDLNode> Connections = new List<LDLNode>();
 
+        public delegate void Logoff();
+        public event Logoff OnLogOff;
         public int Stun = 0;
 
 

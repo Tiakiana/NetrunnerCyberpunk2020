@@ -16,36 +16,36 @@ namespace NetrunnerConsole.ProgramTypology
         {
             Console.WriteLine("The Wizard's Book is called forth, and flips to the relevant page.");
 
-            
-                Console.WriteLine("Choose target type:");
-                Console.WriteLine("1: Gates");
-                Console.WriteLine("2: Files");
 
-                int choice = int.Parse(Console.ReadLine());
-                if (choice == 1)
-                {
-                    Gate gate = Program.ChooseGate();
+            Console.WriteLine("Choose target type:");
+            Console.WriteLine("1: Gates");
+            Console.WriteLine("2: Files");
 
-                    this.ProgramStrength = 6;
-                    DecryptGate(this, gate);
-                    this.ProgramStrength = 4;
-                }
-                else
-                {
-                if (!Player.inst.Area.Entities.Any(x=> x is NetFile))
+            int choice = int.Parse(Console.ReadLine());
+            if (choice == 1)
+            {
+                Gate gate = Program.ChooseGate();
+
+                this.ProgramStrength = 6;
+                DecryptGate(this, gate);
+                this.ProgramStrength = 4;
+            }
+            else
+            {
+                if (!Player.inst.Area.Entities.Any(x => x is NetFile))
                 {
                     Console.WriteLine("The book rumbles: NO SUCH FILES FOUND!");
-            Console.WriteLine("The Wizard's Book slams shut and returns to your deck.");
+                    Console.WriteLine("The Wizard's Book slams shut and returns to your deck.");
                     return;
                 }
 
-                    NetFile netFile = Program.ChoseFile(Player.inst.Area);
+                NetFile netFile = Program.ChoseFile(Player.inst.Area);
 
-                    DecryptProgram(this, netFile);
-                }
+                DecryptProgram(this, netFile);
+            }
 
             Console.WriteLine("The Wizard's Book slams shut and returns to your deck.");
-           // return "The Wizard's Book closes and returns to your deck.";
+            // return "The Wizard's Book closes and returns to your deck.";
 
         }
 

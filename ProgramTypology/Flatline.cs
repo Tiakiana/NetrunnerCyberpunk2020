@@ -38,7 +38,7 @@ namespace NetrunnerConsole.ProgramTypology
 
                 Console.WriteLine("Interface Chip compromised, please install a new chip and type in serial number (4 character code)");
 
-                string required = RNG.RandomString(4);
+                string required = "JZK4";
                 Player.inst.CurrentDeckEquipped.SerialNumberRequired = required;
 
             }
@@ -47,4 +47,5 @@ namespace NetrunnerConsole.ProgramTypology
 
 
     }
+
 }

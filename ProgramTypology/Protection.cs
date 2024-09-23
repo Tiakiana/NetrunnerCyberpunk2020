@@ -16,8 +16,10 @@ namespace NetrunnerConsole.ProgramTypology
         public override void Activate()
         {
             Console.WriteLine("The protective forcefield wells up in front of you. You feel safer!");
-
+            if (!Player.inst.ActivePrograms.Contains(this))
+            {
             Player.inst.ActivePrograms.Add(this);
+            }
 
         }
 

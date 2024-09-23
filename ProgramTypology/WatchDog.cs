@@ -14,11 +14,32 @@ namespace NetrunnerConsole.ProgramTypology
         {
             Name = name;
             MU = mU;
+            Program.TimePasses += Tick;
         }
 
-        public void Tick() { 
-        
-        
+        ~WatchDog()
+        {
+            Program.TimePasses -= Tick;
+
+        }
+
+        public void Tick() {
+
+            if (Derezzed) {
+                return;
+            }
+            if (Area.Entities.Any(x=> x.Team != Team) && CoolDown<= 0)
+            {
+                Activate();
+            }
+            else
+            {
+                CoolDown--;
+                if (Player.inst.Area == Area)
+                {
+                    Console.WriteLine("Dog is unperturbed " + CoolDown);
+                } 
+            }
         }
         public override void Activate()
         {
@@ -42,4 +63,5 @@ namespace NetrunnerConsole.ProgramTypology
 
         }
     }
+
 }

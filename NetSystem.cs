@@ -8,6 +8,7 @@
         public int NumberOfCPUs;
         public bool Alerted;
 
+
         public List<Area> Areas = new List<Area>();
         public List<Entity> entities = new List<Entity>();
 
@@ -49,10 +50,10 @@
             NetProgram.CreateFile($"Terminal:Secretarial Area", inner, this);
             NetProgram.CreateFile($"Terminal: Executive Offices", inner, this);
 
-            //NetProgram.CreatePoisonFlatline(inner, this);
-            //NetProgram.CreateFlatline(inner, this);
-            //NetProgram.CreateHellHound(inner, this);
-            //NetProgram.CreateBrainWipe(inner, this);
+            NetProgram.CreatePoisonFlatline(inner, this);
+            NetProgram.CreateFlatline(inner, this);
+            NetProgram.CreateHellHound(inner, this);
+            NetProgram.CreateBrainWipe(inner, this);
             //NetProgram.CreateFile("Accesspoint: Militech Los Angeles Metroplex",inner, this);
 
 

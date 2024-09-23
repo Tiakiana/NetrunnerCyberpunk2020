@@ -1,5 +1,4 @@
-﻿namespace NetrunnerConsole.ProgramTypology
-{
+﻿namespace NetrunnerConsole.ProgramTypology {
     public class HellBolt : NetProgram
     {
       
@@ -32,5 +31,4 @@
 
         }
     }
-
 }

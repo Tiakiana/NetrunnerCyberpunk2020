@@ -12,7 +12,7 @@ namespace NetrunnerConsole
         public NetSystem System = new NetSystem();
 
         public GameManager GameManager = new GameManager();
-
+        
 
         public static string ascified = 
  @"
@@ -79,12 +79,15 @@ namespace NetrunnerConsole
  .-.-. ..`.`` ' .'-''-` `  -   . '-.` -  ` ..  ' . .` ' -'.   -.'`'.`--.  .`--``.  .. `- '-' ` .-   - '` -`. ` ..` ```-.-``  '.   `-..   ' ''' 
 .`''..-``-  '`  .  - ````-   -- .`  -.-   .'' ` '   ' .  -`-''- - '`.-`'  -..` `` -   -`-` `  - .'- -`.'-- - --'- ` '`-`'  `'..  --`   -'`. ' -";
 
-
-       static void Main(string[] args)
+        public Program()
         {
+            LDLManager lDLManager = new LDLManager();
+
+        }
+        static void Main(string[] args) {
             Console.SetWindowSize(145, 50);
             Console.ForegroundColor
-        = ConsoleColor.Red;
+                = ConsoleColor.Red;
 
             Console.WriteLine(ascified);
             Console.ForegroundColor = ConsoleColor.Green;
@@ -102,17 +105,28 @@ namespace NetrunnerConsole
             p.Player.CurrentDeckEquipped.ProgramList.Add(NetProgram.CreateKiller4(p.Player.CurrentDeckEquipped));
 
             p.Player.Area = p.System.Areas[0];
-            p.Player.Team = 3;
-            for (int i = 0; i < 1000; i++)
-            {
-                if (Player.inst.CurrentDeckEquipped.SerialNumberRequired!="")
-                {
+            p.Player.Team = 1;
+
+
+
+
+            Subgrid(p); //<-- Skal kunne tage et system ind!
+        }
+
+        private static void Subgrid(Program p) {
+            for (int i = 0; i < 10000; i++) {
+                if (Player.inst.CurrentDeckEquipped.SerialNumberRequired != "") {
                     Console.WriteLine("Interface Chip compromised, please install a new chip and type in serial number (4 character code)");
                     string rrr = Console.ReadLine();
-                    if (rrr == Player.inst.CurrentDeckEquipped.SerialNumberRequired)
-                    {
-                        
+                    if (rrr == Player.inst.CurrentDeckEquipped.SerialNumberRequired) 
+                        {
+                        Console.WriteLine("Serial number accepted");
                     }
+                    continue;
+                }
+
+                if (Player.inst.CurrentDeckEquipped.Destroyed) {
+                    Console.WriteLine("Everything was peaceful, until the fire nation attacked. Now we dead.");
                     continue;
                 }
 
@@ -123,8 +137,7 @@ namespace NetrunnerConsole
                 Console.WriteLine();
                 Console.WriteLine();
                 res = res.ToUpper();
-                switch (res)
-                {
+                switch (res) {
                     case "READ":
                         Console.Clear();
 
@@ -152,15 +165,12 @@ namespace NetrunnerConsole
 
                         Console.WriteLine("\tThine active programs art:");
                         Console.WriteLine();
-                        if (Player.inst.ActivePrograms.Count == 0)
-                        {
-                            Console.WriteLine(  "Naught and nothing");
+                        if (Player.inst.ActivePrograms.Count == 0) {
+                            Console.WriteLine("Naught and nothing");
                         }
-                        else
-                        {
+                        else {
 
-                            foreach (var item in Player.inst.ActivePrograms)
-                            {
+                            foreach (var item in Player.inst.ActivePrograms) {
                                 Console.WriteLine(item.Name);
                             }
                         }
@@ -237,8 +247,12 @@ namespace NetrunnerConsole
                         Console.WriteLine("No such input, try again, Your Majesty!");
                         break;
                 }
+                TimePasses.Invoke();
             }
         }
+
+        public static event TimerThing TimePasses;
+        public delegate void TimerThing();
 
         private void Read()
         {

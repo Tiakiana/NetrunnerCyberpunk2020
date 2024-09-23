@@ -181,28 +181,27 @@ namespace NetrunnerConsole
             return new NetFile(title, 2,strength, ares, sys,null,content);
         }
 
-        //public static NetProgram CreatePoisonFlatline(Area area, NetSystem sys)
-        //{
-        //    return new NetProgram("Poison Flatline", 2, 2, area, sys);
-        //}
+        public static NetProgram CreatePoisonFlatline(Area area, NetSystem sys)
+        {
+            return new PoisonFlatline("Poison Flatline", 2, 2, area, sys,null);
+        }
 
         public static NetProgram CreateWatchDog(Area area, NetSystem sys)
         {
             return new WatchDog("Watch_Dog", 5, 4, area, sys,null);
         }
-        //public static NetProgram CreateHellHound(Area area, NetSystem sys)
-        //{
-        //    return new NetProgram("Hell_Hound", 6, 6, area, sys);
-        //}
+        public static NetProgram CreateHellHound(Area area, NetSystem sys)
+        {
+            return new HellHound("Hell_Hound", 6, 6, area, sys,null);
+        }
         public static NetProgram CreateFlatline(Area area, NetSystem sys)
         {
             return new NetProgram("FlatLine", 2, 3, area, sys,null);
         }
 
-        //public static NetProgram CreateBrainWipe(Area area, NetSystem sys)
-        //{
-        //    return new NetProgram("BrainWipe", 4, 3, area, sys);
-        //}
+        public static NetProgram CreateBrainWipe(Area area, NetSystem sys) {
+            return new BrainWipe("BrainWipe", 4, 3, area, sys,null);
+        }
 
         public static NetProgram CreateInvisibility(Deck deck)
         {
